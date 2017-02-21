@@ -28,11 +28,13 @@ Unmarshal function for the specified struct definition.
 	}
 
 	e := new(elem)
-	result, _, _ := MissingXMLTags([]byte(data), e)
+	result, root, _ := MissingXMLTags([]byte(data), e)
 	// result: [elem2.another elem3]
+	// root: doc
 
-	result, _, _ = UnknownXMLTags([]byte(data), e)
+	result, root, _ = UnknownXMLTags([]byte(data), e)
 	// result: [elem2.notes elem4]
+	// root: doc
 
 NOTE: this package is dependent upon github.com/clbanning/mxj.
 
