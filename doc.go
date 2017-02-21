@@ -34,10 +34,10 @@ Unmarshal function for the specified struct definition.
 
 	e := new(elem)
 	result, _, _ := MissingXMLTags([]byte(data), e)
-	// result: [elem3 elem2.another]
+	// result: [elem2.another elem3]
 
 	result, _, _ = UnknownTags([]byte(data), e)
-	// result: [elem4 elem2.notes]
+	// result: [elem2.notes elem4]
 
 NOTE: this package is dependent upon github.com/clbanning/mxj.
 */
