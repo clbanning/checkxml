@@ -47,7 +47,7 @@ https://godoc.org/github.com/clbanning/checkxml
 
 I was having a conversation and the topic of validating streams of XML
 data from various sources came up. What the developer was looking for 
-was a "signature" that could be used to route the data for reformating
+was a "signature" that could be used to route the data for refactoring
 to meet the production application requirements.  Having already done
 something similar for JSON with the github.com/clbanning/checkjson package
 and having the github.com/clbanning/mxj package available, it was a simple
