@@ -38,7 +38,7 @@ NOTE: this package is dependent upon github.com/clbanning/mxj.
 
 <h4>USAGE</h4>
 
-https://godoc.org/github.com/clbanning/checkjson
+https://godoc.org/github.com/clbanning/checkxml
 
 
 <h4>MOTIVATION</h4>
