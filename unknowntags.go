@@ -77,7 +77,7 @@ import (
 //	Example - print out XML data tags and values that will not be decoded to the struct "myStruct":
 //	import "github.com/clbanning/mxj"
 //	...
-//		tags, m, root, err := UnknownXMLTagsMap(xmlData, myStruct)
+//		tags, root, m, err := UnknownXMLTagsMap(xmlData, myStruct)
 //		if err != nil {
 //		   // handle error
 //		}
