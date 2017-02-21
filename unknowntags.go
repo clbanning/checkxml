@@ -14,8 +14,9 @@ import (
 	"github.com/clbanning/mxj"
 )
 
-// UnknownXMLTags returns a list of the tags for XML data elements or attributes
-// that will not be decoded to a member of 'val', which is of type struct.
+// UnknownXMLTags returns a slice of the tags for XML data elements or attributes
+// that will not be decoded to a member of 'val', which is of type struct along with
+// the XML data root tag.
 // For complex elements the tags are reported using dot-notation.
 // Attribute tags are prepended with a hyphen symbol, "-", the clbanning/mxj
 // package convention.
@@ -109,7 +110,7 @@ func UnknownXMLTags(b []byte, val interface{}) ([]string, string, error) {
 }
 
 // UnknownXMLTagsMap returns the mxj.Map - map[string]interface{} - representation
-// of the XML data in addition to the unknown XML tags.
+// of the XML data in addition to the unknown XML tags and the XML data root tag.
 // (See github.com/clbanning/mxj documentation of mxj.Map type.)
 func UnknownXMLTagsMap(b []byte, val interface{}) ([]string, string, mxj.Map, error) {
 	var s []string
@@ -138,7 +139,8 @@ func UnknownXMLTagsMap(b []byte, val interface{}) ([]string, string, mxj.Map, er
 // ================= io.Reader functions ...
 
 // UnknownXMLTagsReader consumes the XML data from an io.Reader and returns
-// the XML tags that are unknown with respect to the struct 'val'.
+// the XML tags that are unknown with respect to the struct 'val' and the XML data
+// root tag.
 func UnknownXMLTagsReader(r io.Reader, val interface{}) ([]string, string, error) {
 	var s []string
 
@@ -165,8 +167,9 @@ func UnknownXMLTagsReader(r io.Reader, val interface{}) ([]string, string, error
 }
 
 // UnknownXMLTagsReaderMap consumes the XML data from an io.Reader and returns
-// the mxj.Map - map[string]interface{} - repre
-// to the unknown XML tags. (See github.com/clbanning/mxj documentation of mxj.Map type.)
+// the mxj.Map - map[string]interface{} - representation of the XML data in addition
+// to the unknown XML tags and the XML data root tag. 
+// (See github.com/clbanning/mxj documentation of mxj.Map type.)
 func UnknownXMLTagsReaderMap(r io.Reader, val interface{}) ([]string, string, mxj.Map, error) {
 	var s []string
 
@@ -193,8 +196,9 @@ func UnknownXMLTagsReaderMap(r io.Reader, val interface{}) ([]string, string, mx
 }
 
 // UnknownXMLTagsReaderMapRaw consumes the XML data from an io.Reader and returns
-// the mxj.Map - map[string]interface{} - representation of the XML data and the raw XML
-// data that was read from the io.Reader  in addition to the unknown XML tags.
+// the raw XML data that was processed in addition to the unknown element tags,
+// the mxj.Map - map[string]interface{} - representation of the XML data, and the XML
+// data root tag.
 // (See github.com/clbanning/mxj documentation of mxj.Map type.)
 func UnknownXMLTagsReaderMapRaw(r io.Reader, val interface{}) ([]string, string, mxj.Map, []byte, error) {
 	var s []string
