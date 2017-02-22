@@ -66,9 +66,11 @@ func MissingXMLTags(b []byte, val interface{}) ([]string, string, error) {
 
 	vv, ok := v.(map[string]interface{})
 	if !ok {
-		// return the name of the value passed if not a map[string]interface{} value
-		s = append(s, reflect.ValueOf(val).Type().Name())
-		return s, root, nil
+		if _, ok = v.([]interface{}); !ok {
+			// return the name of the value passed if not a map[string]interface{} value
+			s = append(s, reflect.ValueOf(val).Type().Name())
+			return s, root, nil
+		}
 	}
 
 	checkMembers(vv, reflect.ValueOf(val), &s, "")
@@ -94,9 +96,11 @@ func MissingXMLTagsMap(b []byte, val interface{}) ([]string, mxj.Map, string, er
 
 	vv, ok := v.(map[string]interface{})
 	if !ok {
-		// return the name of the value passed if not a map[string]interface{} value
-		s = append(s, reflect.ValueOf(val).Type().Name())
-		return s, m, root, nil
+		if _, ok = v.([]interface{}); !ok {
+			// return the name of the value passed if not a map[string]interface{} value
+			s = append(s, reflect.ValueOf(val).Type().Name())
+			return s, m, root, nil
+		}
 	}
 
 	checkMembers(vv, reflect.ValueOf(val), &s, "")
@@ -123,9 +127,11 @@ func MissingXMLTagsReader(r io.Reader, val interface{}) ([]string, string, error
 
 	vv, ok := v.(map[string]interface{})
 	if !ok {
-		// return the name of the value passed if not a map[string]interface{} value
-		s = append(s, reflect.ValueOf(val).Type().Name())
-		return s, root, nil
+		if _, ok = v.([]interface{}); !ok {
+			// return the name of the value passed if not a map[string]interface{} value
+			s = append(s, reflect.ValueOf(val).Type().Name())
+			return s, root, nil
+		}
 	}
 
 	checkMembers(vv, reflect.ValueOf(val), &s, "")
@@ -152,9 +158,11 @@ func MissingXMLTagsReaderMap(r io.Reader, val interface{}) ([]string, mxj.Map, s
 
 	vv, ok := v.(map[string]interface{})
 	if !ok {
-		// return the name of the value passed if not a map[string]interface{} value
-		s = append(s, reflect.ValueOf(val).Type().Name())
-		return s, m, root, nil
+		if _, ok = v.([]interface{}); !ok {
+			// return the name of the value passed if not a map[string]interface{} value
+			s = append(s, reflect.ValueOf(val).Type().Name())
+			return s, m, root, nil
+		}
 	}
 
 	checkMembers(vv, reflect.ValueOf(val), &s, "")
@@ -181,9 +189,11 @@ func MissingXMLTagsReaderMapRaw(r io.Reader, val interface{}) ([]string, mxj.Map
 
 	vv, ok := v.(map[string]interface{})
 	if !ok {
-		// return the name of the value passed if not a map[string]interface{} value
-		s = append(s, reflect.ValueOf(val).Type().Name())
-		return s, m, root, raw, nil
+		if _, ok = v.([]interface{}); !ok {
+			// return the name of the value passed if not a map[string]interface{} value
+			s = append(s, reflect.ValueOf(val).Type().Name())
+			return s, m, root, raw, nil
+		}
 	}
 
 	checkMembers(vv, reflect.ValueOf(val), &s, "")
