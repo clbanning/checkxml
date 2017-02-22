@@ -313,7 +313,7 @@ func checkAllTags(mv interface{}, val reflect.Value, s *[]string, key string) er
 		if tag[0] == "-" {
 			tag = []string{""}
 		}
-		// See if struct member is represents an attribute value.
+		// See if struct member is an attribute value.
 		for _, v := range tags[1:] {
 			if v == "attr" {
 				attr = true
