@@ -14,7 +14,7 @@ var skiptags []string
 
 // SetTagsToIgnore maintains a list of XML element tags in dot-notation
 // that should not be validated as exported struct fields.
-// NOTE: tags are case sensitive - i.e., "key" != "Key" != "KEY".
+// NOTE: tags are case sensitive - i.e., "tag" != "Tag" != "TAG".
 //	Dot-notation:
 //		- Given XML data:
 //			<doc>

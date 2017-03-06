@@ -105,8 +105,8 @@ func UnknownXMLTags(b []byte, val interface{}) ([]string, string, error) {
 		}
 	}
 
-	err = checkAllTags(v, reflect.ValueOf(val), &s, "")
-	return s, root, err
+	checkAllTags(v, reflect.ValueOf(val), &s, "")
+	return s, root, nil
 }
 
 // UnknownXMLTagsMap returns the mxj.Map - map[string]interface{} - representation
@@ -132,8 +132,8 @@ func UnknownXMLTagsMap(b []byte, val interface{}) ([]string, string, mxj.Map, er
 		}
 	}
 
-	err = checkAllTags(v, reflect.ValueOf(val), &s, "")
-	return s, root, m, err
+	checkAllTags(v, reflect.ValueOf(val), &s, "")
+	return s, root, m, nil
 }
 
 // ================= io.Reader functions ...
@@ -162,8 +162,8 @@ func UnknownXMLTagsReader(r io.Reader, val interface{}) ([]string, string, error
 		}
 	}
 
-	err = checkAllTags(v, reflect.ValueOf(val), &s, "")
-	return s, root, err
+	checkAllTags(v, reflect.ValueOf(val), &s, "")
+	return s, root, nil
 }
 
 // UnknownXMLTagsReaderMap consumes the XML data from an io.Reader and returns
@@ -191,8 +191,8 @@ func UnknownXMLTagsReaderMap(r io.Reader, val interface{}) ([]string, string, mx
 		}
 	}
 
-	err = checkAllTags(v, reflect.ValueOf(val), &s, "")
-	return s, root, m, err
+	checkAllTags(v, reflect.ValueOf(val), &s, "")
+	return s, root, m, nil
 }
 
 // UnknownXMLTagsReaderMapRaw consumes the XML data from an io.Reader and returns
@@ -219,22 +219,22 @@ func UnknownXMLTagsReaderMapRaw(r io.Reader, val interface{}) ([]string, string,
 			return s, root, m, raw, fmt.Errorf("no elements")
 		}
 	}
-	err = checkAllTags(v, reflect.ValueOf(val), &s, "")
-	return s, root, m, raw, err
+	checkAllTags(v, reflect.ValueOf(val), &s, "")
+	return s, root, m, raw, nil
 }
 
 // ================== where the work is done ...
 
-func checkAllTags(mv interface{}, val reflect.Value, s *[]string, key string) error {
+func checkAllTags(mv interface{}, val reflect.Value, s *[]string, key string) {
 	var tkey string
 
 	// 1. Convert any pointer value.
 	if val.Kind() == reflect.Ptr {
-		val = reflect.Indirect(val) // convert ptr to struct
+		val = reflect.Indirect(val)
 	}
 	// zero Value?
 	if !val.IsValid() {
-		return nil
+		return
 	}
 	typ := val.Type()
 
@@ -252,27 +252,19 @@ func checkAllTags(mv interface{}, val reflect.Value, s *[]string, key string) er
 		slice, ok := mv.([]interface{})
 		if !ok {
 			*s = append(*s, key)
-			return nil
+			return
 		}
 		// 2.1. Check members of XML data
 		//      This forces all of them to be regular and w/o typos in key labels.
 		for _, sl := range slice {
-			/*
-				if key == "" {
-					tkey = strconv.Itoa(n + 1)
-				} else {
-					tkey = key + "." + strconv.Itoa(n+1)
-				}
-				_ = checkAllTags(sl, sval, s, tkey)
-			*/
-			_ = checkAllTags(sl, sval, s, key) // all list elements have same tag
+			checkAllTags(sl, sval, s, key) // all list elements have same tag
 		}
-		return nil // done with reflect.Slice value
+		return
 	}
 
 	// 3a. Ignore anything that's not a struct.
 	if typ.Kind() != reflect.Struct {
-		return nil // just ignore it - don't look for k:v pairs
+		return // just ignore it - don't look for k:v pairs
 	}
 	// 3b. map value must represent k:v pairs
 	mm, ok := mv.(map[string]interface{})
@@ -379,9 +371,9 @@ func checkAllTags(mv interface{}, val reflect.Value, s *[]string, key string) er
 		// 		}
 		// 	}
 		//
-		_ = checkAllTags(m, spec.val, s, tkey)
+		checkAllTags(m, spec.val, s, tkey)
 	next:
 	}
 
-	return nil
+	return
 }

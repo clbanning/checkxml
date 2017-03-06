@@ -206,7 +206,7 @@ func MissingXMLTagsReaderMapRaw(r io.Reader, val interface{}) ([]string, mxj.Map
 func checkMembers(mv interface{}, val reflect.Value, s *[]string, cmem string) {
 	// 1. Convert any pointer value.
 	if val.Kind() == reflect.Ptr {
-		val = reflect.Indirect(val) // convert ptr to struc
+		val = reflect.Indirect(val)
 	}
 	// zero Value?
 	if !val.IsValid() {
