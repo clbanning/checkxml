@@ -36,7 +36,7 @@ Unmarshal function for the specified struct definition.
 	// result: [elem2.notes elem4]
 	// root: doc
 
-NOTE: this package is dependent upon github.com/clbanning/mxj.
+NOTE: this package is dependent upon [mxj](http://github.com/clbanning/mxj).
 
 <h4>USAGE</h4>
 
