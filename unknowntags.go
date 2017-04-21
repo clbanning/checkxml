@@ -30,7 +30,7 @@ import (
 //		}
 //
 //		doc1 := doc1{}
-//		tags, _, _ := UnknownxMLTags([]byte(data1), doc2)
+//		tags, _, _ := UnknownXMLTags([]byte(data1), doc2)
 //		fmt.Println(tags) // prints: [e2]
 //
 //		data2 := `<doc>
@@ -49,7 +49,7 @@ import (
 //		}
 //
 //		doc2 := doc2{}
-//		tags, _, _ := UnknownxMLTags([]byte(data2), doc2)
+//		tags, _, _ := UnknownXMLTags([]byte(data2), doc2)
 //		fmt.Println(tags) // prints: [subdoc.e2]
 //
 //		data3 := `<doc>
@@ -61,7 +61,7 @@ import (
 //		}
 //
 //		doc3 := doc3{}
-//		tags, _, _ := UnknownxMLTags([]byte(data3), doc3)
+//		tags, _, _ := UnknownXMLTags([]byte(data3), doc3)
 //		fmt.Println(tags) // prints: [e1.-attr e2]
 //
 // If a struct member has a "-" XML tag and a corresponding tag with the

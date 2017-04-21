@@ -21,23 +21,38 @@ import (
 // Specific struct members can be igored when scanning the XML object by declaring them using
 // SetMembersToIgnore().
 //
-//	Dot-notation:
-//		Given the following declaration.
-//			type name struct {
-//			  First string
-//			  Last  string
-//			}
-//			type id struct {
-//			  ID name `xml:"id"`
-//			}
+//	Examples:
+//		data1 := `<doc>
+//		            <e1>test</e1>
+//		          </doc>`
+//		type doc1 struct {
+//			E1 string `xml:"e1"`
+//			E2 string `xml:"e2"`
+//		}
 //
-//		Given the folliing XML data.
-//			<user>
-//			  <id>
-//			    <first>foo</first>
-//			    <last>bar</last>
-//			  </id>
-//			</user>
+//		doc1 := doc1{}
+//		tags, _, _ := MissingXMLTags([]byte(data1), doc2)
+//		fmt.Println(tags) // prints: [e2]
+//
+//		data2 := `<doc>
+//		            <e1>test</e1>
+//		            <subdoc>
+//		              <e1>test</e1>
+//		            </subdoc>
+//		          </doc>
+//		type subdoc struct {
+//			E1 string `xml:"e1"`
+//			E2 string `xml:"e2"`
+//		}
+//		type doc2 struct {
+//			E1  string `xml:"e1"`
+//			E2  string `xml:"e2"`
+//			Sub subdoc `xml:"subdoc"`
+//		}
+//
+//		doc2 := doc2{}
+//		tags, _, _ := MissingXMLTags([]byte(data2), doc2)
+//		fmt.Println(tags) // prints: [e2 subdoc.e2]
 //
 // By default missing tags in the XML data that are associated with struct members that
 // have XML tags "-" and "omitempty" are not included in the returned slice.
