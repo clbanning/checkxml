@@ -52,3 +52,9 @@ to meet the production application requirements.  Having already done
 something similar for JSON with the [checkjson](https//github.com/clbanning/checkjson)
  package and having the [mxj](http://github.com/clbanning/mxj) package available, 
 it was a simple exercise to do a mashup of the two packages.
+
+<h4>RELATED</h4>
+
+There is a complementary package for checking JSON objects against structs at
+https://github.com/clbanning/checkjson.
+
