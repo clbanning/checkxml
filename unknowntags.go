@@ -69,10 +69,8 @@ import (
 // as part of the unknown tags since it is "known" as part of the struct
 // definition even if it won't be decoded by the encoding/xml package.
 //
-// NOTE: dot-notation XML tag values returned by UnknownXMLTags use the
-// struct member `xml` tag or the public field name if there is no `xml` tag.
-// This allows the members of the returned slice to be directly used with
-// the mxj package if the mxj.Map representation of the XML data is available..
+// NOTE: dot-notation XML tag values returned by UnknownXMLTags can be used with
+// the mxj package if the mxj.Map representation of the XML data is available.
 // (See github.com/clbanning/mxj documentation of mxj.Map type.)
 //	Example - print out XML data tags and values that will not be decoded to the struct "myStruct":
 //	import "github.com/clbanning/mxj"
