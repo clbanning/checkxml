@@ -264,7 +264,9 @@ func checkMembers(mv interface{}, val reflect.Value, s *[]string, cmem string) {
 		*s = append(*s, cmem+typ.Name())
 		return
 	}
-	// 3c. Coerce keys to lower case.
+	// 3c. NOTE: Don't coerce keys to lower case.
+	//     XML decoder requires that XML tag matches 
+	//     struct member name (or tag) exactly.
 	mkeys := make(map[string]interface{}, len(mm))
 	for k, v := range mm {
 		mkeys[k] = v

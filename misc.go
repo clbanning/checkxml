@@ -101,8 +101,8 @@ func SetMxjCast(b ...bool) {
 // HasTags is a convenience function that takes the result slice from MissingTags
 // or UnknownTags and returns "true, nil" if the dot-notation 'check' values are
 // in the slice.  If one or more of the 'check' values are not in the 'result' slice
-// the return value will be "false, []string" where the slice of string values is
-// the 'check' values that are not in 'result'.
+// the return value will be "false; []string" is the slice of string values from
+// 'check' that are not in 'result'.
 func HasTags(result []string, check ...string) (bool, []string) {
 	r := make(map[string]bool, len(result))
 	for _, v := range result {
