@@ -85,7 +85,7 @@ func IgnoreOmitemptyTag(ok ...bool) {
 // should we try to coerce the values to float64 or bool
 var mxjCast bool
 
-// SetMxjCast manages clbanning/mxj decoder flag that causes the mxj.Map values
+// SetMxjCast manages a XML decoder flag that causes the mxj.Map values
 // to be cast as float64 or bool if possible. The default, SetMxjCast(false), leaves all
 // mxj.Map values as string type. Calling SetMxjCast with no arguments - checkxml.SetMxjCast() - 
 // will toggle the flag true/false.
