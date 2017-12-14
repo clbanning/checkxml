@@ -18,7 +18,7 @@ import (
 // values. For nested structs, member labels are the dot-notation hierachical
 // path for the missing XML tag.
 // The XML root tag for XML data, 'b', that was scanned is also returned.
-// Specific struct members can be igored when scanning the XML object by declaring them using
+// Specific struct members can be ignored when scanning the XML object by declaring them using
 // SetMembersToIgnore().
 //
 //	Examples:
