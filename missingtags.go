@@ -75,7 +75,7 @@ func MissingXMLTags(b []byte, val interface{}) ([]string, string, error) {
 	// strip off the root value
 	var root string
 	var v interface{}
-	for _, v = range m {
+	for root, v = range m {
 		break
 	}
 
