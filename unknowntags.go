@@ -166,7 +166,7 @@ func UnknownXMLTagsReader(r io.Reader, val interface{}) ([]string, string, error
 
 // UnknownXMLTagsReaderMap consumes the XML data from an io.Reader and returns
 // the mxj.Map - map[string]interface{} - representation of the XML data in addition
-// to the unknown XML tags and the XML data root tag. 
+// to the unknown XML tags and the XML data root tag.
 // (See github.com/clbanning/mxj documentation of mxj.Map type.)
 func UnknownXMLTagsReaderMap(r io.Reader, val interface{}) ([]string, string, mxj.Map, error) {
 	var s []string
@@ -249,13 +249,15 @@ func checkAllTags(mv interface{}, val reflect.Value, s *[]string, key string) {
 		sval := reflect.New(tval)
 		slice, ok := mv.([]interface{})
 		if !ok {
-			*s = append(*s, key)
-			return
-		}
-		// 2.1. Check members of XML data
-		//      This forces all of them to be regular and w/o typos in key labels.
-		for _, sl := range slice {
-			checkAllTags(sl, sval, s, key) // all list elements have same tag
+			// the slice may have one obj in it
+			// just Check members of XML data
+			checkAllTags(mv, sval, s, key)
+		} else {
+			// 2.1. Check members of XML data
+			//      This forces all of them to be regular and w/o typos in key labels.
+			for _, sl := range slice {
+				checkAllTags(sl, sval, s, key) // all list elements have same tag
+			}
 		}
 		return
 	}
