@@ -270,3 +270,36 @@ func TestUnknownXMLTagsWithSubelemTag(t *testing.T) {
 		}
 	}
 }
+
+// ===================== 11/27/18: handle single member slices correctly =============
+// thanks to: zhengfang.sun sunsun314 (github)
+
+func TestUnknownTagsSingletonList(t *testing.T) {
+	var b = []byte(`<yy>
+	<xx>1</xx>
+</yy>`)
+
+	var d = []byte(`<yy>
+	<zz>1</zz>
+</yy>`)
+
+	type Y struct {
+		Property []string `xml:"xx"`
+	}
+
+	y := Y{}
+	tags, _, err := UnknownXMLTags(b, y)
+	if err != nil {
+		t.Fatal("err on b:", err.Error())
+	} else if len(tags) != 0 {
+		t.Fatal("reported tags for b", tags)
+	}
+
+	y = Y{}
+	tags, _, err = UnknownXMLTags(d, y)
+	if err != nil {
+		t.Fatal(err.Error())
+	} else if tags[0] != "zz" {
+		t.Fatal("didn't report 'zz' for d:", tags)
+	}
+}

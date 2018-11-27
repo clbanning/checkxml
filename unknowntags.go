@@ -249,7 +249,10 @@ func checkAllTags(mv interface{}, val reflect.Value, s *[]string, key string) {
 		sval := reflect.New(tval)
 		slice, ok := mv.([]interface{})
 		if !ok {
-			*s = append(*s, key)
+			// See if there's a singleton, not a slice, in XML object.
+			// If it's not there, this call will put it there.
+			// Thanks to: zhengfang.sun <notifications@github.com>,
+			checkAllTags(mv, sval, s, key)
 			return
 		}
 		// 2.1. Check members of XML data
