@@ -338,6 +338,9 @@ func checkAllTags(mv interface{}, val reflect.Value, s *[]string, key string) {
 
 	// 5. check that map keys correspond to exported field names
 	//    We handle the keys in the map literally, unlike for encoding/json.
+	//    But first remove any "#text" keys if it's a simple element.
+	delete(mm, "#text")
+
 	var spec *fieldSpec
 	for k, m := range mm {
 		for _, sk := range skiptags {
