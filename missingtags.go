@@ -65,6 +65,11 @@ import (
 // This allows the members of the returned slice to be used to directly manipulate a mxj.Map
 // representation of the XML data if it is available.
 // (See github.com/clbanning/mxj documentation of mxj.Map type.)
+//
+// KNOWN BUG: recursive struct definitions are NOT handled correctly.  E.g.:
+//		type MyStruct struct {
+//		   More *[]MyStruct
+//		}
 func MissingXMLTags(b []byte, val interface{}) ([]string, string, error) {
 	var s []string
 
