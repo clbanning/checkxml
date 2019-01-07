@@ -42,5 +42,7 @@ Unmarshal function for the specified struct definition.
 	// root: doc
 
 NOTE: this package is dependent upon github.com/clbanning/mxj.
+
+NOTE: this package DOES NOT support recursive struct definitions.
 */
 package checkxml

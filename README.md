@@ -42,6 +42,9 @@ NOTE: this package is dependent upon [clbanning/mxj](http://github.com/clbanning
 
 https://godoc.org/github.com/clbanning/checkxml
 
+<h4>LIMITATION</h4>
+
+This package does not support recursive struct definitions.
 
 <h4>MOTIVATION</h4>
 
