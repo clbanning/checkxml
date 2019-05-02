@@ -44,7 +44,7 @@ https://godoc.org/github.com/clbanning/checkxml
 
 <h4>LIMITATION</h4>
 
-This package does not support recursive struct definitions.
+The MissingXMLTags function does not support recursive structs.
 
 <h4>MOTIVATION</h4>
 

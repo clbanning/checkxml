@@ -43,6 +43,6 @@ Unmarshal function for the specified struct definition.
 
 NOTE: this package is dependent upon github.com/clbanning/mxj.
 
-NOTE: this package DOES NOT support recursive struct definitions.
+NOTE: function MissingXMLTags DOES NOT support recursive structs
 */
 package checkxml
