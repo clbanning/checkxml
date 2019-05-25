@@ -1,6 +1,6 @@
 // missingtags.go - check XML data for tags that are missing from struct definition.
-// Copyright © 2017 Charles Banning.  All rights reserved.
-// Use of this source code is governed by a BSD-style
+// Copyright © 2017-2019 Charles Banning.  All rights reserved.
+// Use of this source code is governed by a MIT-style
 // license that can be found in the LICENSE file.
 
 package checkxml

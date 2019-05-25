@@ -1,6 +1,6 @@
 // unknowntags.go - identify XML data elements that will not be unmarshalled to a struct field
-// Copyright © 2017 Charles Banning.  All rights reserved.
-// Use of this source code is governed by a BSD-style
+// Copyright © 2017-2019 Charles Banning.  All rights reserved.
+// Use of this source code is governed by a MIT-style
 // license that can be found in the LICENSE file.
 
 package checkxml
